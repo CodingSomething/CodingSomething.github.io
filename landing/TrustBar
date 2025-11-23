@@ -1,0 +1,58 @@
+import React from 'react';
+import { Shield, Lock, Globe } from 'lucide-react';
+import { motion } from 'framer-motion';
+
+export default function TrustBar() {
+  const logos = [
+    "Startup Co.", "Consulting Partners", "Freelancer Hub", 
+    "Legal Tech Inc.", "Modern Firm", "Venture Group"
+  ];
+
+  const badges = [
+    { icon: Shield, text: "SOC 2-Ready Practices" },
+    { icon: Lock, text: "AES-256 Encryption" },
+    { icon: Globe, text: "EU & US Data Residency" }
+  ];
+
+  return (
+    <section className="bg-white py-16 border-y border-gray-100">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-12"
+        >
+          <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-8">
+            Trusted by modern teams and solo professionals
+          </h3>
+          
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-items-center mb-12">
+            {logos.map((logo, idx) => (
+              <div key={idx} className="text-gray-400 font-medium text-sm opacity-60 hover:opacity-100 transition-opacity">
+                {logo}
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
+        <div className="flex flex-wrap justify-center gap-6">
+          {badges.map((badge, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: idx * 0.1 }}
+              className="flex items-center gap-2 px-4 py-2 bg-gray-50 rounded-full border border-gray-200"
+            >
+              <badge.icon className="w-4 h-4 text-[#FF8A3D]" />
+              <span className="text-sm font-medium text-gray-700">{badge.text}</span>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
