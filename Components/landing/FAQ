@@ -1,0 +1,95 @@
+import React, { useState } from 'react';
+import { ChevronDown } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+
+export default function FAQ() {
+  const [openIndex, setOpenIndex] = useState(null);
+
+  const faqs = [
+    {
+      question: "Is this a replacement for hiring a lawyer?",
+      answer: "No. Our AI legal assistant is a powerful analysis and information tool designed to help you understand legal documents quickly. It provides general legal information and document analysis, but it is not a substitute for professional legal advice from a licensed attorney. For important legal matters, we recommend consulting with a qualified lawyer."
+    },
+    {
+      question: "Which document types do you support?",
+      answer: "We support a wide range of document formats including PDFs, Word documents (.doc, .docx), scanned images (PNG, JPG), and email threads. Common document types include contracts, NDAs, employment agreements, leases, HR policies, dispute letters, and more. If you have a specific format question, feel free to reach out to our support team."
+    },
+    {
+      question: "How secure is my data?",
+      answer: "Security is our top priority. We use industry-standard AES-256 encryption for all files both in transit and at rest. Your documents are stored in secure, isolated environments with strict access controls. We never use your private documents to train our AI models. We also offer EU and US data residency options and maintain SOC 2-ready security practices."
+    },
+    {
+      question: "Can I use this for court documents or litigation?",
+      answer: "While our AI assistant can help you understand court documents, filings, and litigation materials, we strongly recommend working directly with a licensed attorney for any active legal proceedings. Court matters require professional legal representation and strategy that goes beyond document analysis."
+    },
+    {
+      question: "Do you store or train on my documents?",
+      answer: "We securely store your documents only for the purpose of providing our service to you. We do NOT use your private documents to train our AI models. Your data remains completely private and confidential. You can delete your documents at any time from your account dashboard."
+    },
+    {
+      question: "How accurate is the AI assistant?",
+      answer: "Our AI legal assistant is highly accurate for document analysis and information extraction, but like any AI system, it's not perfect. We recommend treating it as a highly capable research assistant that can save you time and provide valuable insights, but important decisions should always be verified with a human legal professional."
+    }
+  ];
+
+  return (
+    <section className="py-20 lg:py-28 bg-[#F9F9FB]">
+      <div className="max-w-4xl mx-auto px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl lg:text-5xl font-bold text-[#1F2933] mb-4">
+            Frequently asked questions
+          </h2>
+        </motion.div>
+
+        <div className="space-y-4">
+          {faqs.map((faq, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: idx * 0.05 }}
+              className="bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-md transition-shadow duration-200"
+            >
+              <button
+                onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
+                className="w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 transition-colors"
+              >
+                <span className="text-lg font-semibold text-[#1F2933] pr-4">
+                  {faq.question}
+                </span>
+                <ChevronDown 
+                  className={`w-5 h-5 text-[#FF8A3D] flex-shrink-0 transition-transform duration-200 ${
+                    openIndex === idx ? 'rotate-180' : ''
+                  }`}
+                />
+              </button>
+
+              <AnimatePresence>
+                {openIndex === idx && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="overflow-hidden"
+                  >
+                    <div className="px-6 pb-6 pt-2 text-gray-600 leading-relaxed border-t border-gray-100">
+                      {faq.answer}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

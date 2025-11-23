@@ -1,0 +1,84 @@
+import React from 'react';
+import { Scale } from 'lucide-react';
+
+export default function Footer() {
+  const links = {
+    product: ["Features", "Pricing", "Demo", "Security"],
+    company: ["About", "Blog", "Careers", "Contact"],
+    legal: ["Terms of Service", "Privacy Policy", "Cookie Policy", "GDPR"]
+  };
+
+  return (
+    <footer className="bg-[#1F2933] text-white">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+        <div className="grid md:grid-cols-4 gap-12 mb-12">
+          {/* Logo and mission */}
+          <div className="md:col-span-1">
+            <div className="flex items-center gap-2 mb-4">
+              <Scale className="w-7 h-7 text-[#FF8A3D]" />
+              <span className="text-xl font-bold">LegalAssistant</span>
+            </div>
+            <p className="text-gray-400 text-sm leading-relaxed">
+              Empowering professionals with AI-powered legal document analysis and insights.
+            </p>
+          </div>
+
+          {/* Links */}
+          <div>
+            <h4 className="font-semibold mb-4">Product</h4>
+            <ul className="space-y-2">
+              {links.product.map((link, idx) => (
+                <li key={idx}>
+                  <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
+                    {link}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-semibold mb-4">Company</h4>
+            <ul className="space-y-2">
+              {links.company.map((link, idx) => (
+                <li key={idx}>
+                  <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
+                    {link}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-semibold mb-4">Legal</h4>
+            <ul className="space-y-2">
+              {links.legal.map((link, idx) => (
+                <li key={idx}>
+                  <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
+                    {link}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom section */}
+        <div className="pt-8 border-t border-gray-700">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-gray-400 text-sm">
+              © 2024 LegalAssistant AI. All rights reserved.
+            </p>
+            
+            <div className="bg-gray-800 rounded-lg px-4 py-3 max-w-2xl">
+              <p className="text-xs text-gray-400 leading-relaxed">
+                <span className="font-semibold text-gray-300">Important Legal Notice:</span> This service provides automated legal information and document analysis. It does not create an attorney–client relationship and should not be relied upon as a substitute for advice from a licensed attorney in your jurisdiction.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
