@@ -1,0 +1,98 @@
+import React from 'react';
+import { Upload, MessageCircle, CheckSquare } from 'lucide-react';
+import { motion } from 'framer-motion';
+
+export default function HowItWorks() {
+  const steps = [
+    {
+      number: 1,
+      icon: Upload,
+      title: "Upload your legal documents",
+      description: "Drag and drop contracts, NDAs, HR policies, leases, dispute letters, and more. We securely process PDFs, Word files, scanned images, and email threads.",
+      note: "All files are encrypted in transit and at rest."
+    },
+    {
+      number: 2,
+      icon: MessageCircle,
+      title: "Ask questions in plain language",
+      description: "Ask anything like you would ask a lawyer: 'What are the termination clauses?', 'Do I have liability here?', or 'Summarize this contract in 5 bullet points.' Our AI legal assistant reads the document and answers in context.",
+      note: null
+    },
+    {
+      number: 3,
+      icon: CheckSquare,
+      title: "Get structured answers and next steps",
+      description: "Receive summaries, risks, and suggested next steps. Export insights into polished notes or share a secure link with your team. Download your notes or share them with your legal team in seconds.",
+      note: null
+    }
+  ];
+
+  return (
+    <section className="py-20 lg:py-28 bg-[#F9F9FB]">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl lg:text-5xl font-bold text-[#1F2933] mb-4">
+            How it works
+          </h2>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            From upload to answers in three simple steps
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-3 gap-8 lg:gap-10">
+          {steps.map((step, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              className="relative bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border-t-4 border-[#FF8A3D]"
+            >
+              <div className="absolute -top-6 left-8 w-12 h-12 bg-gradient-to-br from-[#FF8A3D] to-[#F45B5B] rounded-xl flex items-center justify-center shadow-lg">
+                <step.icon className="w-6 h-6 text-white" />
+              </div>
+
+              <div className="mt-6">
+                <div className="text-sm font-bold text-[#FF8A3D] mb-2">
+                  STEP {step.number}
+                </div>
+                <h3 className="text-xl font-bold text-[#1F2933] mb-4">
+                  {step.title}
+                </h3>
+                <p className="text-gray-600 leading-relaxed mb-4">
+                  {step.description}
+                </p>
+                {step.note && (
+                  <p className="text-xs text-gray-500 italic border-l-2 border-gray-200 pl-3">
+                    {step.note}
+                  </p>
+                )}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="mt-12 text-center"
+        >
+          <div className="inline-block bg-white rounded-xl px-6 py-4 shadow-sm border border-gray-200">
+            <p className="text-sm text-gray-600 max-w-3xl">
+              <span className="font-semibold text-gray-700">Important:</span> Our AI assistant provides general legal information and document analysis. It is not a substitute for advice from a licensed attorney.
+            </p>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
