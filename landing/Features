@@ -1,0 +1,82 @@
+import React from 'react';
+import { FileSearch, Zap, Users, ShieldCheck } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Badge } from "@/components/ui/badge";
+
+export default function Features() {
+  const features = [
+    {
+      icon: FileSearch,
+      title: "Answers grounded in your documents",
+      description: "Every response is anchored to the clauses, definitions, and dates inside your files—no generic legal fluff.",
+      badge: "Cite-back references"
+    },
+    {
+      icon: Zap,
+      title: "Chat like you text, think like a lawyer",
+      description: "Ask follow-up questions, change scenarios, and drill into specific sections—your AI legal assistant remembers the full context of your upload.",
+      badge: "Real-time conversation"
+    },
+    {
+      icon: Users,
+      title: "Share insights with your team in one click",
+      description: "Export summaries, risk lists, or Q&A transcripts to PDF or your knowledge base so everyone stays aligned.",
+      badge: "Collaboration-ready"
+    },
+    {
+      icon: ShieldCheck,
+      title: "Security first, by design",
+      description: "Industry-standard encryption, strict access controls, and no training on your private data. Built for compliance-minded teams.",
+      badge: "Enterprise-grade security"
+    }
+  ];
+
+  return (
+    <section className="py-20 lg:py-28 bg-white">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl lg:text-5xl font-bold text-[#1F2933] mb-4">
+            Designed for fast, reliable legal understanding
+          </h2>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+          {features.map((feature, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              className="group relative bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 hover:shadow-xl transition-all duration-300 border border-gray-100"
+            >
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-[#FF8A3D]/10 to-[#F45B5B]/10 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <feature.icon className="w-7 h-7 text-[#FF8A3D]" />
+                </div>
+                
+                <div className="flex-1">
+                  <h3 className="text-xl font-bold text-[#1F2933] mb-3">
+                    {feature.title}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed mb-4">
+                    {feature.description}
+                  </p>
+                  <Badge className="bg-orange-50 text-[#FF8A3D] border-orange-100 hover:bg-orange-100">
+                    {feature.badge}
+                  </Badge>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
