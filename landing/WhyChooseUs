@@ -1,0 +1,122 @@
+import React from 'react';
+import { Check, X } from 'lucide-react';
+import { motion } from 'framer-motion';
+
+export default function WhyChooseUs() {
+  const differentiators = [
+    {
+      title: "Specialized for legal documents",
+      description: "Fine-tuned on legal structure and terminology, not just general chat"
+    },
+    {
+      title: "Transparent reasoning",
+      description: "Every answer links back to the exact paragraph or clause it used"
+    },
+    {
+      title: "Human-friendly explanations",
+      description: "Plain English (or your language), with optional 'lawyer-level detail' on demand"
+    },
+    {
+      title: "Ethically designed",
+      description: "Built with clear limits and disclaimers so users know when to consult a licensed attorney"
+    }
+  ];
+
+  const comparisons = [
+    {
+      feature: "Document awareness",
+      generic: false,
+      ours: true
+    },
+    {
+      feature: "Security guarantees",
+      generic: false,
+      ours: true
+    },
+    {
+      feature: "Shareable, exportable reports",
+      generic: false,
+      ours: true
+    }
+  ];
+
+  return (
+    <section className="py-20 lg:py-28 bg-white">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl lg:text-5xl font-bold text-[#1F2933] mb-4">
+            What makes our legal assistant different
+          </h2>
+        </motion.div>
+
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
+          {/* Left: Differentiators */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="space-y-6"
+          >
+            {differentiators.map((diff, idx) => (
+              <div key={idx} className="flex gap-4">
+                <div className="flex-shrink-0 w-6 h-6 bg-gradient-to-br from-[#FF8A3D] to-[#F45B5B] rounded-full flex items-center justify-center mt-1">
+                  <Check className="w-4 h-4 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-[#1F2933] mb-1">
+                    {diff.title}
+                  </h3>
+                  <p className="text-gray-600">
+                    {diff.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </motion.div>
+
+          {/* Right: Comparison Table */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 border border-gray-200 shadow-sm"
+          >
+            <h3 className="text-xl font-bold text-[#1F2933] mb-6 text-center">
+              Our Legal Assistant vs Others
+            </h3>
+
+            <div className="space-y-4">
+              {/* Header */}
+              <div className="grid grid-cols-3 gap-4 pb-3 border-b border-gray-200">
+                <div className="text-sm font-semibold text-gray-500">Feature</div>
+                <div className="text-sm font-semibold text-gray-500 text-center">Generic Chatbots</div>
+                <div className="text-sm font-semibold text-[#FF8A3D] text-center">Our Assistant</div>
+              </div>
+
+              {/* Rows */}
+              {comparisons.map((comp, idx) => (
+                <div key={idx} className="grid grid-cols-3 gap-4 items-center py-2">
+                  <div className="text-sm text-gray-700 font-medium">{comp.feature}</div>
+                  <div className="flex justify-center">
+                    <X className="w-5 h-5 text-red-400" />
+                  </div>
+                  <div className="flex justify-center">
+                    <Check className="w-5 h-5 text-green-500" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
